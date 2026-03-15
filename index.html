@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FroX • Controle total da sua frota</title>
+    <meta
+      name="description"
+      content="FroX mostra em tempo real onde está cada caminhão, motorista e carga. Pare de depender de WhatsApp e planilhas para controlar sua frota."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --fro-primary: #a10202;
+        --fro-secondary: #f1f5f9;
+        --fro-bg: #090c12;
+        --fro-text: #f1f5f9;
+      }
+
+      body {
+        font-family: "Work Sans", system-ui, -apple-system, sans-serif;
+        color: var(--fro-text);
+        background: radial-gradient(120% 120% at 50% -10%, #1f2933 0, #111827 40%, #020617 100%);
+      }
+
+      .heading-font {
+        font-family: "Outfit", system-ui, -apple-system, sans-serif;
+      }
+
+      .glass-panel {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .hero-glow {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(161, 2, 2, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen antialiased bg-[var(--fro-bg)] text-slate-50 selection:bg-red-900 selection:text-white">
+    
+    <!-- Background Image / Overlay -->
+    <div class="fixed inset-0 -z-20 opacity-20" aria-hidden="true">
+      <img
+        src="https://images.pexels.com/photos/2199293/pexels-photo-2199293.jpeg?auto=compress&cs=tinysrgb&w=1600"
+        alt="Background"
+        class="h-full w-full object-cover"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-[var(--fro-bg)] via-[var(--fro-bg)]/90 to-[var(--fro-bg)]"></div>
+    </div>
+
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 transition-all duration-300 bg-[var(--fro-bg)]/80 backdrop-blur-md border-b border-white/5">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    
+    <div class="flex items-center gap-3">
+      <img src="assets/logo.png" alt="FroX" class="h-10 w-10 object-contain rounded-lg" style="filter: brightness(1.1);">
+      <div class="flex flex-col leading-tight">
+        <span class="heading-font text-base font-bold tracking-tight text-white">FroX</span>
+        <span class="text-[11px] font-medium text-slate-400 tracking-wide uppercase">Controle de Frotas</span>
+      </div>
+    </div>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="#beneficios" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Benefícios</a>
+      <a href="#como-funciona" class="text-sm font-medium text-slate-300 hover:text-white transition-colors">Como Funciona</a>
+    </nav>
+
+    <a href="#contato" class="rounded-full bg-white text-slate-900 px-5 py-2 text-sm font-semibold transition-transform hover:-translate-y-0.5 hover:bg-slate-200">
+      Falar com Especialista
+    </a>
+
+  </div>
+</header>
+    <main>
+      <!-- Hero Section -->
+      <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="hero-glow"></div>
+        <div class="mx-auto max-w-7xl grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          
+          <!-- Copy -->
+          <div class="max-w-2xl space-y-8 z-10">
+            <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-slate-300 backdrop-blur-sm">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              Chega de planilhas e WhatsApp
+            </div>
+            
+            <h1 class="heading-font text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.1]">
+              Pare de dirigir sua frota <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-[var(--fro-primary)]">no escuro.</span>
+            </h1>
+            
+            <p class="text-lg text-slate-400 sm:text-xl leading-relaxed">
+              A FroX mostra em tempo real onde está cada caminhão, motorista e carga. Controle sua operação em uma única tela, de forma simples e direta.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#contato" class="inline-flex justify-center items-center rounded-full bg-[var(--fro-primary)] px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-red-700 hover:shadow-lg hover:shadow-red-900/30">
+                Recuperar o Controle
+              </a>
+              <a href="#como-funciona" class="inline-flex justify-center items-center rounded-full border border-slate-700 bg-slate-800/50 px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-slate-800">
+                Ver como funciona
+              </a>
+            </div>
+          </div>
+
+          <!-- Mockups -->
+          <div class="relative flex items-end justify-center gap-4 mt-10 lg:mt-0 z-10">
+            <!-- Glow ambiental -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div class="w-96 h-64 rounded-full bg-red-900/15 blur-3xl"></div>
+            </div>
+
+            <!-- Web Mockup -->
+            <div class="relative flex-1 min-w-0 rounded-2xl border border-white/8 bg-slate-900/90 shadow-2xl shadow-black/70 overflow-hidden">
+              <!-- Barra do browser -->
+              <div class="flex items-center gap-3 px-4 py-3 border-b border-white/8 bg-slate-800/70">
+                <div class="flex gap-1.5">
+                  <div class="h-2.5 w-2.5 rounded-full bg-slate-600/80"></div>
+                  <div class="h-2.5 w-2.5 rounded-full bg-slate-600/80"></div>
+                  <div class="h-2.5 w-2.5 rounded-full bg-slate-600/80"></div>
+                </div>
+                <div class="flex-1 h-5 rounded-md bg-slate-700/50 flex items-center px-2 gap-1.5">
+                  <div class="h-2 w-2 rounded-full bg-slate-500/60"></div>
+                  <div class="h-1.5 w-28 rounded bg-slate-500/40"></div>
+                </div>
+              </div>
+              <img id="web-mockup" src="assets/web/DASH.png" alt="Painel FroX Web" class="w-full object-cover transition-opacity duration-500" />
+            </div>
+
+            <!-- Mobile Mockup -->
+            <div class="relative flex-shrink-0 w-[28%] rounded-[1.8rem] border-2 border-white/15 bg-slate-900 shadow-2xl shadow-black/70 overflow-hidden ring-1 ring-white/8">
+              <!-- Notch -->
+              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-3.5 bg-slate-900 rounded-b-xl z-10"></div>
+              <img id="mobile-mockup" src="assets/nativo/HOME.png" alt="App FroX Mobile" class="w-full object-cover transition-opacity duration-500" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Benefícios -->
+      <section id="beneficios" class="py-24 px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-slate-900/30">
+        <div class="mx-auto max-w-7xl">
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="heading-font text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Tudo que você precisa, em um só lugar.
+            </h2>
+            <p class="mt-4 text-lg text-slate-400">
+              Transformamos a confusão de dados dispersos em decisões rápidas e lucrativas.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass-panel p-8 rounded-2xl">
+              <div class="h-12 w-12 rounded-lg bg-red-900/30 flex items-center justify-center text-[var(--fro-primary)] mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+              </div>
+              <h3 class="heading-font text-xl font-semibold text-white mb-3">Linha do Tempo Clara</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Acompanhe o status de todas as viagens do dia. Check-ins do motorista viram pontos na linha do tempo, sem necessidade de áudios longos no WhatsApp.
+              </p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-2xl">
+              <div class="h-12 w-12 rounded-lg bg-blue-900/30 flex items-center justify-center text-blue-400 mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <h3 class="heading-font text-xl font-semibold text-white mb-3">Redução de Ociosidade</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                Descubra em segundos quantos caminhões estão rodando, parados ou em manutenção. Faça sua frota render mais com decisões baseadas em dados.
+              </p>
+            </div>
+
+            <div class="glass-panel p-8 rounded-2xl">
+              <div class="h-12 w-12 rounded-lg bg-emerald-900/30 flex items-center justify-center text-emerald-400 mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+              </div>
+              <h3 class="heading-font text-xl font-semibold text-white mb-3">Equipe Conectada</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">
+                App fácil para o motorista registrar saídas, paradas e entregas. O gestor recebe tudo em tempo real no painel web, sem atritos e sem papelada.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Como Funciona -->
+      <section id="como-funciona" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-4xl">
+          <h2 class="heading-font text-3xl font-bold tracking-tight text-white sm:text-4xl text-center mb-16">
+            Em 3 passos, você sai do caos para o controle.
+          </h2>
+
+          <div class="space-y-12">
+            <!-- Passo 1 -->
+            <div class="flex flex-col sm:flex-row gap-6 items-start">
+              <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-[var(--fro-primary)] text-white font-bold text-xl">1</div>
+              <div>
+                <h3 class="heading-font text-xl font-semibold text-white">Mapeamento Rápido</h3>
+                <p class="mt-2 text-slate-400">Em uma conversa rápida, entendemos suas rotas típicas, o tipo da sua carga e o tamanho da sua frota atual. Sem burocracia.</p>
+              </div>
+            </div>
+            
+            <!-- Passo 2 -->
+            <div class="flex flex-col sm:flex-row gap-6 items-start">
+              <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-[var(--fro-primary)] text-white font-bold text-xl">2</div>
+              <div>
+                <h3 class="heading-font text-xl font-semibold text-white">Configuração do Painel</h3>
+                <p class="mt-2 text-slate-400">Cadastramos sua frota e motoristas na FroX. Entregamos seu painel pronto para uso, sem planilhas gigantes ou treinamentos complexos.</p>
+              </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="flex flex-col sm:flex-row gap-6 items-start">
+              <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-[var(--fro-primary)] text-white font-bold text-xl">3</div>
+              <div>
+                <h3 class="heading-font text-xl font-semibold text-white">Operação Visível</h3>
+                <p class="mt-2 text-slate-400">Motoristas passam a usar o app nativo no dia a dia. Você começa a acompanhar a operação e resolver gargalos imediatamente pelo painel web.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contato -->
+      <section id="contato" class="py-24 px-4 sm:px-6 lg:px-8 border-t border-white/5 bg-slate-900/50">
+        <div class="mx-auto max-w-3xl glass-panel rounded-3xl p-8 sm:p-12">
+          <div class="text-center mb-10">
+            <p class="text-xs font-semibold uppercase tracking-widest text-[var(--fro-primary)] mb-3">Fale com um especialista</p>
+            <h2 class="heading-font text-3xl font-bold text-white mb-4">Sua frota sob controle em menos de 48h.</h2>
+            <p class="text-slate-400 max-w-xl mx-auto">Preencha o formulário abaixo. Nossa equipe entra em contato pelo WhatsApp para entender sua operação e configurar seu painel — sem burocracia.</p>
+          </div>
+
+          <form id="form-contato" class="space-y-5" onsubmit="enviarWhatsApp(event)" novalidate>
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div class="space-y-1.5">
+                <label for="nome" class="text-sm font-medium text-slate-300">Nome completo <span class="text-[var(--fro-primary)]">*</span></label>
+                <input type="text" id="nome" required autocomplete="name" class="w-full rounded-xl border border-white/10 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-500 focus:border-[var(--fro-primary)] focus:ring-1 focus:ring-[var(--fro-primary)] outline-none transition" placeholder="Ex: Carlos Mendes">
+              </div>
+              <div class="space-y-1.5">
+                <label for="empresa" class="text-sm font-medium text-slate-300">Empresa <span class="text-[var(--fro-primary)]">*</span></label>
+                <input type="text" id="empresa" required autocomplete="organization" class="w-full rounded-xl border border-white/10 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-500 focus:border-[var(--fro-primary)] focus:ring-1 focus:ring-[var(--fro-primary)] outline-none transition" placeholder="Nome da transportadora">
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div class="space-y-1.5">
+                <label for="telefone" class="text-sm font-medium text-slate-300">WhatsApp <span class="text-[var(--fro-primary)]">*</span></label>
+                <input type="tel" id="telefone" required autocomplete="tel" class="w-full rounded-xl border border-white/10 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-500 focus:border-[var(--fro-primary)] focus:ring-1 focus:ring-[var(--fro-primary)] outline-none transition" placeholder="(99) 99999-9999">
+              </div>
+              <div class="space-y-1.5">
+                <label for="email" class="text-sm font-medium text-slate-300">E-mail</label>
+                <input type="email" id="email" autocomplete="email" class="w-full rounded-xl border border-white/10 bg-slate-800/50 px-4 py-3 text-white placeholder-slate-500 focus:border-[var(--fro-primary)] focus:ring-1 focus:ring-[var(--fro-primary)] outline-none transition" placeholder="carlos@empresa.com.br">
+              </div>
+            </div>
+
+            <div class="space-y-1.5">
+              <label for="frota" class="text-sm font-medium text-slate-300">Quantos veículos tem sua frota? <span class="text-[var(--fro-primary)]">*</span></label>
+              <select id="frota" required class="w-full rounded-xl border border-white/10 bg-slate-800/50 px-4 py-3 text-white focus:border-[var(--fro-primary)] focus:ring-1 focus:ring-[var(--fro-primary)] outline-none transition appearance-none cursor-pointer">
+                <option value="" disabled selected>Selecione o tamanho da sua frota</option>
+                <option value="Ate 10 veiculos">Até 10 veículos</option>
+                <option value="11 a 30 veiculos">11 a 30 veículos</option>
+                <option value="31 a 80 veiculos">31 a 80 veículos</option>
+                <option value="Mais de 80 veiculos">Mais de 80 veículos</option>
+              </select>
+            </div>
+
+            <div id="form-erro" class="hidden text-sm text-red-400 text-center pt-1">Preencha todos os campos obrigatórios antes de continuar.</div>
+
+            <button type="submit" class="w-full mt-2 rounded-xl bg-[var(--fro-primary)] px-4 py-4 text-base font-bold text-white transition hover:bg-red-700 active:scale-[0.98]">
+              Quero controlar minha frota agora
+            </button>
+            <p class="text-center text-xs text-slate-500">Sem compromisso. Respondemos em ate 1 hora em dias uteis.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-slate-950 py-8 px-4 text-center text-sm text-slate-500">
+      <div class="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-white">FroX</span>
+          <span>© <span id="year"></span>. Todos os direitos reservados.</span>
+        </div>
+        <p>Controle total da sua frota, em tempo real.</p>
+        <p>Desenvolvido por <a href="https://visionxma.com/" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white font-medium transition-colors">VisionX</a></p>
+      </div>
+    </footer>
+
+    <script>
+      // Atualiza o ano no footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Envio do formulário via WhatsApp
+      function enviarWhatsApp(event) {
+        event.preventDefault();
+
+        const nome     = document.getElementById("nome").value.trim();
+        const empresa  = document.getElementById("empresa").value.trim();
+        const telefone = document.getElementById("telefone").value.trim();
+        const email    = document.getElementById("email").value.trim();
+        const frota    = document.getElementById("frota").value;
+        const erro     = document.getElementById("form-erro");
+
+        if (!nome || !empresa || !telefone || !frota) {
+          erro.classList.remove("hidden");
+          return;
+        }
+        erro.classList.add("hidden");
+
+        const linhas = [
+          "*Solicitação de contato - FroX*",
+          "",
+          "*Nome:* " + nome,
+          "*Empresa:* " + empresa,
+          "*WhatsApp:* " + telefone,
+          email ? "*E-mail:* " + email : null,
+          "*Frota:* " + frota,
+          "",
+          "Tenho interesse em conhecer a plataforma FroX."
+        ].filter(function(l) { return l !== null; });
+
+        const mensagem = linhas.join("\n");
+        const numero   = "5599984680391";
+        const url      = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem);
+
+        window.open(url, "_blank");
+      }
+
+      // Rotação de imagens nos mockups para dar vida à página
+const webImages = [
+  "assets/web/CAMI.png",
+  "assets/web/DASH.png",
+  "assets/web/FINA.png",
+  "assets/web/MOTO.png",
+  "assets/web/VIAGEM.png"
+];
+
+const mobileImages = [
+  "assets/nativo/HOME.png",
+  "assets/nativo/NEWVIAGEM.png",
+  "assets/nativo/DETALHES.png"
+];
+
+      const webImg = document.getElementById("web-mockup");
+      const mobileImg = document.getElementById("mobile-mockup");
+
+      let wIdx = 0;
+      let mIdx = 0;
+
+      setInterval(() => {
+        wIdx = (wIdx + 1) % webImages.length;
+        webImg.style.opacity = "0";
+        setTimeout(() => {
+          webImg.src = webImages[wIdx];
+          webImg.style.opacity = "1";
+        }, 500);
+      }, 5000);
+
+      setInterval(() => {
+        mIdx = (mIdx + 1) % mobileImages.length;
+        mobileImg.style.opacity = "0";
+        setTimeout(() => {
+          mobileImg.src = mobileImages[mIdx];
+          mobileImg.style.opacity = "1";
+        }, 500);
+      }, 4500);
+    </script>
+  </body>
+</html>
